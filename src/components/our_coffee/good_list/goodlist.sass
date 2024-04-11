@@ -1,0 +1,43 @@
+.goods__list
+  display: grid
+  grid-template-columns: repeat(3, 220px)
+  grid-gap: 71px
+  grid-row-gap: 60px
+  justify-items: center
+  align-items: center
+  justify-content: center
+  align-content: center
+
+  .goods__item
+    border-radius: 8px
+    width: 220px
+    height: 260px
+    background: #fff
+    margin-bottom: 30px
+    box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, 0.25)
+
+    a
+      padding-top: 37px
+      display: flex
+      flex-direction: column
+      align-items: center
+      cursor: pointer
+      color: black
+      gap: 14px
+      font-weight: 400
+      font-size: 14px
+
+      .goods__item-country,
+      .goods__item-price
+        align-self: flex-end
+        margin-right: 27px
+
+      .goods__item-price
+        font-weight: 700
+
+.separator_line
+  border: 1px solid #000
+  width: 240px
+  height: 0px
+  margin: 0 auto
+  margin-bottom: 60px
