@@ -1,8 +1,4 @@
 import { Component } from 'react'
-// import Header from './header/header'
-// import AboutUs from './about/aboutus'
-// import Products from './products/products'
-// import Footer from './footer/footer'
 import ButtonMore from '../UI/ButtonMore'
 import NavPanel from '../UI/NavPanel'
 
@@ -148,4 +144,4 @@ class CoffeeHouse extends Component {
 }
 
 export default CoffeeHouse
-export { SeparatorWhite, SeparatorBlack }
+export { SeparatorWhite, SeparatorBlack, Header, Footer }

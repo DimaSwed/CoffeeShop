@@ -1,15 +1,10 @@
 import React, { Component } from 'react'
-// import GoodsItemDescription from './goodsitem_description'
-import HeaderAbout from '../our_coffee/header/header'
-import Footer from '../coffee_house/footer/footer'
+import { HeaderAbout } from '../our_coffee/OurCoffee'
+import { Footer } from '../coffee_house/CofeeHouse'
 import { SeparatorBlack } from '../coffee_house/CofeeHouse'
 import './goods_description.sass'
 
 class GoodsItemDescription extends Component {
-	constructor(props) {
-		super(props)
-	}
-
 	render() {
 		const { country, salary, description } = this.props.goods || {}
 
@@ -57,3 +52,4 @@ class GoodsItem extends Component {
 }
 
 export default GoodsItem
+export { GoodsItemDescription }

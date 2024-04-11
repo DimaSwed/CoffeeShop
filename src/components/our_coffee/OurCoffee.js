@@ -1,15 +1,11 @@
 import { Component } from 'react'
-// import HeaderAbout from './header/header'
-// import AboutInner from './about/about'
-import SearchPanel from './search_panel/searchpanel'
-// import GoodsList from './good_list/goodlist'
-import Footer from '../coffee_house/footer/footer'
-
-// import GoodsItemDescription from './good_description/goodsitem_description'
 import { useState } from 'react'
 import { SeparatorBlack } from '../coffee_house/CofeeHouse'
 import NavPanel from '../UI/NavPanel'
 import { ButtonPaginationNext, ButtonPaginationPrev } from '../UI/ButtonMore'
+import { ButtonFilter } from '../UI/ButtonMore'
+import { Footer } from '../coffee_house/CofeeHouse'
+
 import './ourcoffee.sass'
 
 class HeaderAboutInner extends Component {
@@ -174,6 +170,43 @@ const GoodsList = ({ goods, onSelect }) => {
 	)
 }
 
+class SearchPanel extends Component {
+	constructor(props) {
+		super(props)
+		this.state = {
+			term: ''
+		}
+	}
+
+	onUpdateSearch = e => {
+		const term = e.target.value
+		this.setState({ term })
+		this.props.onUpdateSearch(term)
+	}
+
+	render() {
+		return (
+			<div className="searchpanel">
+				<div className="searchpanel_enter">
+					<p>Looking for:</p>
+					<input
+						type="text"
+						placeholder="Start typing here..."
+						value={this.state.term}
+						onChange={this.onUpdateSearch}
+					/>
+				</div>
+				<div className="searchpanel_filter">
+					<p>Or filter:</p>
+					<ButtonFilter text="Brazil" />
+					<ButtonFilter text="Kenya" />
+					<ButtonFilter text="Columbia" />
+				</div>
+			</div>
+		)
+	}
+}
+
 class OurCoffee extends Component {
 	constructor(props) {
 		super(props)
@@ -247,3 +280,4 @@ class OurCoffee extends Component {
 }
 
 export default OurCoffee
+export { AboutInner, HeaderAbout, GoodsList, SearchPanel }
