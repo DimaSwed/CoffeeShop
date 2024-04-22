@@ -2,7 +2,7 @@ import { Component } from 'react'
 import ButtonMore from '../UI/ButtonMore'
 import NavPanel from '../UI/NavPanel'
 
-import './coffeehouse.sass'
+import './CoffeeHouse.sass'
 
 const SeparatorWhite = () => {
 	return (

@@ -1,4 +1,4 @@
-import { Component } from 'react'
+import React, { Component } from 'react'
 import { useState } from 'react'
 import { SeparatorBlack } from '../coffee_house/CofeeHouse'
 import NavPanel from '../UI/NavPanel'
@@ -6,7 +6,7 @@ import { ButtonPaginationNext, ButtonPaginationPrev } from '../UI/ButtonMore'
 import { ButtonFilter } from '../UI/ButtonMore'
 import { Footer } from '../coffee_house/CofeeHouse'
 
-import './ourcoffee.sass'
+import './OurCoffee.sass'
 
 class HeaderAboutInner extends Component {
 	render() {
@@ -174,7 +174,8 @@ class SearchPanel extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			term: ''
+			term: '',
+			filter: ''
 		}
 	}
 
@@ -184,7 +185,13 @@ class SearchPanel extends Component {
 		this.props.onUpdateSearch(term)
 	}
 
+	handleFilterChange = filter => {
+		this.setState({ filter })
+	}
+
 	render() {
+		const { term, filter } = this.state
+
 		return (
 			<div className="searchpanel">
 				<div className="searchpanel_enter">
@@ -198,9 +205,18 @@ class SearchPanel extends Component {
 				</div>
 				<div className="searchpanel_filter">
 					<p>Or filter:</p>
-					<ButtonFilter text="Brazil" />
-					<ButtonFilter text="Kenya" />
-					<ButtonFilter text="Columbia" />
+					<ButtonFilter
+						text="Brazil"
+						onClick={() => this.handleFilterChange('Brazil')}
+					/>
+					<ButtonFilter
+						text="Kenya"
+						onClick={() => this.handleFilterChange('Kenya')}
+					/>
+					<ButtonFilter
+						text="Columbia"
+						onClick={() => this.handleFilterChange('Columbia')}
+					/>
 				</div>
 			</div>
 		)
