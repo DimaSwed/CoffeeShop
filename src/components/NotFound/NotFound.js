@@ -1,8 +1,8 @@
+import React from 'react'
 import { Link } from 'react-router-dom'
-
 import './NotFound.sass'
 
-export default function NotFound() {
+const NotFound = () => {
 	return (
 		<div className="notFound__container">
 			<h1>Упс! Похоже, вы заблудились.</h1>
@@ -15,3 +15,5 @@ export default function NotFound() {
 		</div>
 	)
 }
+
+export default NotFound

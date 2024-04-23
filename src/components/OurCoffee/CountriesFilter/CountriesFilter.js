@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { ButtonFilter } from '../UI/ButtonMore'
+import { ButtonFilter } from '../../UI/ButtonMore'
+import './CountriesFilter.sass'
 
 export class CountriesFilter extends Component {
 	constructor(props) {

@@ -1,0 +1,59 @@
+.products
+  background-image: url('../../../../public/assets/img/bg-img-2.png')
+  background-repeat: no-repeat
+  background-size: cover
+  background-position: center
+
+.products__inner
+  font-family: "Merienda", sans-serif
+  padding-top: 80px
+  padding-bottom: 110px
+  display: flex
+  flex-direction: column
+  align-items: center
+
+  h2
+    margin-bottom: 39px
+    font-weight: 400
+    font-size: 24px
+    text-align: center
+    color: #000
+
+.products__items
+  display: flex
+  justify-content: space-between
+  gap: 71px
+  flex-wrap: wrap
+
+.products__item
+  padding-top: 22px
+  width: 220px
+  max-height: 240px
+  border-radius: 8px
+  background: rgba(255, 255, 255, 0.65)
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: center
+  cursor: pointer
+
+  transition: all 0.1s ease-in-out
+
+  &:hover
+    background-color: #fff
+
+  img
+    display: block
+    margin: 0 auto
+    margin-bottom: 14px
+
+  figcaption
+    font-weight: 400
+    font-size: 14px
+    text-align: center
+    color: #000
+    margin-bottom: 10px
+
+    &:last-child
+      text-align: right
+      margin-right: 22px

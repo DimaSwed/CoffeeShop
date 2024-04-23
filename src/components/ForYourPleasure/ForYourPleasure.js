@@ -1,10 +1,10 @@
 import { Component } from 'react'
-import { HeaderAbout } from '../OurCoffee/OurCoffee'
-import { AboutInner } from '../OurCoffee/OurCoffee'
-import { GoodsList } from '../OurCoffee/OurCoffee'
-import { Footer } from '../CoffeeHouse/CofeeHouse'
-
-import { GoodsItemDescription } from '../GoodsDescription/GoodsDescription'
+// import { HeaderAbout } from '../OurCoffee/OurCoffee'
+import HeaderAbout from '../OurCoffee/HeaderAbout/HeaderAbout'
+import AboutInner from '../OurCoffee/AboutInner/AboutInner'
+import GoodsList from '../OurCoffee/GoodsList/GoodsList'
+import GoodsItemDescription from '../OurCoffee/GoodsItemDescription/GoodsItemDescription'
+import { Footer } from '../CoffeeHouse/Footer/Footer'
 
 class ForYourPleasure extends Component {
 	constructor(props) {
