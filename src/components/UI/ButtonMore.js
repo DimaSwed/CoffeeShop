@@ -6,15 +6,16 @@ const ButtonMore = () => {
 }
 
 class ButtonFilter extends Component {
-	constructor(props) {
-		super(props)
-	}
-
 	render() {
+		const { type, text, onClick } = this.props
 		return (
 			<>
-				<button className={classes.button__filter}>
-					{this.props.text}
+				<button
+					className={classes.button__filter}
+					type={type}
+					onClick={onClick}
+				>
+					{text}
 				</button>
 			</>
 		)

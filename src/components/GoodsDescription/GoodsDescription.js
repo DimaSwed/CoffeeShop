@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { HeaderAbout } from '../our_coffee/OurCoffee'
-import { Footer } from '../coffee_house/CofeeHouse'
-import { SeparatorBlack } from '../coffee_house/CofeeHouse'
+import { HeaderAbout } from '../OurCoffee/OurCoffee'
+import { Footer } from '../CoffeeHouse/CofeeHouse'
+import { SeparatorBlack } from '../CoffeeHouse/CofeeHouse'
 import './GoodsDescription.sass'
 
 class GoodsItemDescription extends Component {

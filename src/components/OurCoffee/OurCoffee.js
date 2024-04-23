@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
-import { useState } from 'react'
-import { SeparatorBlack } from '../coffee_house/CofeeHouse'
+import { SeparatorBlack } from '../CoffeeHouse/CofeeHouse'
 import NavPanel from '../UI/NavPanel'
 import { ButtonPaginationNext, ButtonPaginationPrev } from '../UI/ButtonMore'
-import { ButtonFilter } from '../UI/ButtonMore'
-import { Footer } from '../coffee_house/CofeeHouse'
+// import { ButtonFilter } from '../UI/ButtonMore'
+import { Footer } from '../CoffeeHouse/CofeeHouse'
+import CountriesFilter from './CountriesFilter'
 
 import './OurCoffee.sass'
+
+const GOODS_PER_PAGE = 6 // Количество товаров на странице
 
 class HeaderAboutInner extends Component {
 	render() {
@@ -71,21 +73,14 @@ class AboutInner extends Component {
 }
 
 class GoodsItemDescription extends Component {
-	constructor(props) {
-		super(props)
-		this.state = {
-			country: props.goods.country,
-			salary: props.goods.salary,
-			description: props.goods.description
-		}
-	}
 	render() {
-		const { country, salary, description } = this.state
+		const { goods } = this.props
+		const { country, salary, description } = goods
 
 		return (
 			<div className="goods__item-description">
 				<div className="goods__item-description_img">
-					<img src="/assets/img/item-img.png" alt="goods item"></img>
+					<img src="/assets/img/item-img.png" alt="goods item" />
 				</div>
 
 				<div className="goods__item-description_content">
@@ -107,67 +102,88 @@ class GoodsItemDescription extends Component {
 	}
 }
 
-const GOODS_PER_PAGE = 6 // Количество товаров на странице
+class GoodItem extends Component {
+	render() {
+		return (
+			<>
+				<a href="#">
+					<img
+						src={`assets/img/${this.props.item.preview}`}
+						alt="goods"
+						className="goods__item-img"
+					/>
+					<div className="goods__item-name">
+						{this.props.item.name}
+					</div>
+					<div className="goods__item-country">
+						{this.props.item.country}
+					</div>
+					<div className="goods__item-price">
+						{this.props.item.salary}
+					</div>
+				</a>
+			</>
+		)
+	}
+}
 
-const GoodsList = ({ goods, onSelect }) => {
-	const [currentPage, setCurrentPage] = useState(1)
-
-	// Вычисляем индексы товаров, которые будут отображаться на текущей странице
-	const indexOfLastGoods = currentPage * GOODS_PER_PAGE
-	const indexOfFirstGoods = indexOfLastGoods - GOODS_PER_PAGE
-	const currentGoods = goods.slice(indexOfFirstGoods, indexOfLastGoods)
-
-	const goToPrevPage = () => {
-		if (currentPage > 1) {
-			setCurrentPage(currentPage - 1)
+class GoodsList extends Component {
+	constructor(props) {
+		super(props)
+		this.state = {
+			currentPage: 1
 		}
 	}
 
-	const goToNextPage = () => {
+	goToPrevPage = () => {
+		if (this.state.currentPage > 1) {
+			this.setState({ currentPage: this.state.currentPage - 1 })
+		}
+	}
+
+	goToNextPage = () => {
+		const { currentPage } = this.state
+		const { goods } = this.props
+		const indexOfLastGoods = currentPage * GOODS_PER_PAGE
 		if (indexOfLastGoods < goods.length) {
-			setCurrentPage(currentPage + 1)
+			this.setState({ currentPage: currentPage + 1 })
 		}
 	}
 
-	return (
-		<div>
-			<ul className="goods__list">
-				{currentGoods.map(item => (
-					<li
-						key={item.id}
-						className="goods__item"
-						onClick={() => onSelect(item)}
-					>
-						<a href="#">
-							<img
-								src={`assets/img/${item.preview}`}
-								alt="goods"
-								className="goods__item-img"
-							/>
-							<div className="goods__item-name">{item.name}</div>
-							<div className="goods__item-country">
-								{item.country}
-							</div>
-							<div className="goods__item-price">
-								{item.salary}
-							</div>
-						</a>
-					</li>
-				))}
-			</ul>
-			<div className="pagination">
-				<ButtonPaginationPrev
-					onClick={goToPrevPage}
-					disabled={currentPage === 1}
-				/>
-				<span>{currentPage}</span>
-				<ButtonPaginationNext
-					onClick={goToNextPage}
-					disabled={indexOfLastGoods >= goods.length}
-				/>
+	render() {
+		const { goods, onSelect } = this.props
+		const { currentPage } = this.state
+		const indexOfLastGoods = currentPage * GOODS_PER_PAGE
+		const indexOfFirstGoods = indexOfLastGoods - GOODS_PER_PAGE
+		const currentGoods = goods.slice(indexOfFirstGoods, indexOfLastGoods)
+
+		return (
+			<div>
+				<ul className="goods__list">
+					{currentGoods.map(item => (
+						<li
+							key={item.id}
+							className="goods__item"
+							onClick={() => onSelect(item)}
+						>
+							<GoodItem item={item} />
+						</li>
+					))}
+				</ul>
+				<div className="pagination">
+					<ButtonPaginationPrev
+						onClick={this.goToPrevPage}
+						disabled={currentPage === 1}
+					/>
+					<span>{currentPage}</span>
+					<ButtonPaginationNext
+						onClick={this.goToNextPage}
+						disabled={indexOfLastGoods >= goods.length}
+					/>
+				</div>
 			</div>
-		</div>
-	)
+		)
+	}
 }
 
 class SearchPanel extends Component {
@@ -177,6 +193,7 @@ class SearchPanel extends Component {
 			term: '',
 			filter: ''
 		}
+		this.onUpdateSearch = this.onUpdateSearch.bind(this)
 	}
 
 	onUpdateSearch = e => {
@@ -185,13 +202,7 @@ class SearchPanel extends Component {
 		this.props.onUpdateSearch(term)
 	}
 
-	handleFilterChange = filter => {
-		this.setState({ filter })
-	}
-
 	render() {
-		const { term, filter } = this.state
-
 		return (
 			<div className="searchpanel">
 				<div className="searchpanel_enter">
@@ -203,21 +214,7 @@ class SearchPanel extends Component {
 						onChange={this.onUpdateSearch}
 					/>
 				</div>
-				<div className="searchpanel_filter">
-					<p>Or filter:</p>
-					<ButtonFilter
-						text="Brazil"
-						onClick={() => this.handleFilterChange('Brazil')}
-					/>
-					<ButtonFilter
-						text="Kenya"
-						onClick={() => this.handleFilterChange('Kenya')}
-					/>
-					<ButtonFilter
-						text="Columbia"
-						onClick={() => this.handleFilterChange('Columbia')}
-					/>
-				</div>
+				<CountriesFilter chooseCountry={this.props.chooseCountry} />
 			</div>
 		)
 	}
@@ -228,8 +225,21 @@ class OurCoffee extends Component {
 		super(props)
 		this.state = {
 			selectedItem: null,
-			showDescription: false
+			showDescription: false,
+			term: '',
+			filter: ''
 		}
+		this.handleItemSelected = this.handleItemSelected.bind(this)
+		this.handleUpdateSearch = this.handleUpdateSearch.bind(this)
+		this.handleChooseCountry = this.handleChooseCountry.bind(this)
+	}
+
+	handleUpdateSearch(term) {
+		this.setState({ term })
+	}
+
+	handleChooseCountry(country) {
+		this.setState({ filter: country })
 	}
 
 	handleItemSelected = item => {
@@ -260,9 +270,9 @@ class OurCoffee extends Component {
 	}
 
 	render() {
-		const { goods, term, filter, onUpdateSearch } = this.props
+		const { goods } = this.props
+		const { term, filter, selectedItem, showDescription } = this.state
 		const visibleData = this.filterPost(this.searchEmp(goods, term), filter)
-		const { selectedItem, showDescription } = this.state
 
 		return (
 			<>
@@ -280,7 +290,10 @@ class OurCoffee extends Component {
 							<GoodsItemDescription goods={selectedItem} />
 						) : (
 							<>
-								<SearchPanel onUpdateSearch={onUpdateSearch} />
+								<SearchPanel
+									onUpdateSearch={this.handleUpdateSearch}
+									chooseCountry={this.handleChooseCountry}
+								/>
 								<GoodsList
 									goods={visibleData}
 									onSelect={this.handleItemSelected}

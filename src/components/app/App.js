@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
-import CofeeHouse from '../coffee_house/CofeeHouse'
-import OurCoffee from '../our_coffee/OurCoffee'
-import ForYourPleasure from '../for_your_pleasure/ForYourPleasure'
+import CofeeHouse from '../CoffeeHouse/CofeeHouse'
+import OurCoffee from '../OurCoffee/OurCoffee'
+import ForYourPleasure from '../ForYourPleasure/ForYourPleasure'
 import NotFound from '../NotFound/NotFound'
 
 import goods from '../../data/goods'
