@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/DimaSwed/CoffeeShop.git/static/css/main.817b6524.css",
-    "main.js": "/DimaSwed/CoffeeShop.git/static/js/main.c96864c3.js",
-    "static/media/bg-img-2.png": "/DimaSwed/CoffeeShop.git/static/media/bg-img-2.7cf53156d259a594fe12.png",
-    "static/media/bg-img-1.png": "/DimaSwed/CoffeeShop.git/static/media/bg-img-1.baa112b424357b564460.png",
-    "static/media/bg-img-3.png": "/DimaSwed/CoffeeShop.git/static/media/bg-img-3.a501fde6b42d1652db82.png",
-    "index.html": "/DimaSwed/CoffeeShop.git/index.html",
-    "main.817b6524.css.map": "/DimaSwed/CoffeeShop.git/static/css/main.817b6524.css.map",
-    "main.c96864c3.js.map": "/DimaSwed/CoffeeShop.git/static/js/main.c96864c3.js.map"
+    "main.css": "/static/css/main.feb1221c.css",
+    "main.js": "/static/js/main.c96864c3.js",
+    "static/media/bg-img-2.png": "/static/media/bg-img-2.7cf53156d259a594fe12.png",
+    "static/media/bg-img-1.png": "/static/media/bg-img-1.baa112b424357b564460.png",
+    "static/media/bg-img-3.png": "/static/media/bg-img-3.a501fde6b42d1652db82.png",
+    "index.html": "/index.html",
+    "main.feb1221c.css.map": "/static/css/main.feb1221c.css.map",
+    "main.c96864c3.js.map": "/static/js/main.c96864c3.js.map"
   },
   "entrypoints": [
-    "static/css/main.817b6524.css",
+    "static/css/main.feb1221c.css",
     "static/js/main.c96864c3.js"
   ]
 }
